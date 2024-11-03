@@ -112,6 +112,18 @@ Saves the retrieved access token to the `.env` file for future use.
 - Return the modified DataFrame with new columns:
   - `margin_required` and `premium_earned`.
 
+## AI Tools Used
+
+This project utilized various AI tools to enhance its development process:
+
+- **Code Generation Assistance**: AI tools were employed to generate code snippets and functions based on project requirements, significantly speeding up development time.
+  
+- **Error Handling Suggestions**: AI provided recommendations on best practices for error handling in API requests, ensuring robust code that gracefully manages failures.
+
+- **Documentation Generation**: AI was used to assist in drafting clear and concise documentation, making it easier for users to understand how to set up and use the scripts effectively.
+
+- **Understanding Financial Terms**: AI tools were leveraged to demystify complex financial terminology and concepts while enhancing financial literacy. 
+
 ## Error Handling
 
 Both scripts include error handling for network requests and data validation. In case of any issues (e.g., invalid parameters or network errors), informative messages will be printed to the console.
