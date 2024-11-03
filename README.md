@@ -83,11 +83,34 @@ Saves the retrieved access token to the `.env` file for future use.
 
 #### `get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> pd.DataFrame`
 
-Fetches option chain data from Upstox API based on instrument name, expiry date, and option type (PE or CE). Returns a DataFrame containing relevant option details.
+**Inputs**:
+- `instrument_name`: Name of the instrument (e.g., NIFTY or BANKNIFTY).
+- `expiry_date`: The expiration date of the options, in YYYY-MM-DD format.
+- `side`: Type of option to retrieve; use "PE" for Put and "CE" for Call.
+
+**Function Logic**:
+1. Retrieve option chain data from Upstox API.
+2. For each strike price:
+   - If `side == "PE"`, select the highest bid price.
+   - If `side == "CE"`, select the highest ask price.
+3. Organize this data into a DataFrame with columns:
+   - `instrument_name`, `strike_price`, `side`, and `bid/ask`.
 
 #### `calculate_margin_and_premium(data: pd.DataFrame) -> pd.DataFrame`
 
-Calculates margin requirements and premium earned for each option contract in the provided DataFrame. Returns an updated DataFrame with additional columns for margin required and premium earned.
+**Inputs**:
+- `data`: The DataFrame returned by `get_option_chain_data`.
+
+**Function Logic**:
+1. **Margin Calculation**:
+   - For each row (representing an option contract), request margin requirement from Upstox API based on transaction type "Sell".
+   
+2. **Premium Calculation**:
+   - Multiply the bid/ask price by a predefined lot size for each option to calculate premium earned.
+
+**Output**:
+- Return the modified DataFrame with new columns:
+  - `margin_required` and `premium_earned`.
 
 ## Error Handling
 
